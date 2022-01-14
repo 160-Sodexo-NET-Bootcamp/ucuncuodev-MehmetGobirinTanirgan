@@ -8,6 +8,7 @@ namespace SwcsAPI.Mappings
     {
         public MappingProfile()
         {
+            // İhtiyacım olan tür dönüşümlerini yazdım.
             CreateMap<ContainerCreateDto, Container>();
             CreateMap<ContainerUpdateDto, Container>();
             CreateMap<Container, ContainerDefaultResponseDto>();

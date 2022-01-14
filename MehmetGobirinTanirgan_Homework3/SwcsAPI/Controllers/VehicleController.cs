@@ -110,7 +110,7 @@ namespace SwcsAPI.Controllers
         }
 
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}")] // Engelleyeceğimiz GetById action'u
         public async Task<IActionResult> GetVehicleById([FromRoute] long id)
         {
             if (id <= 0)

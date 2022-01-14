@@ -8,16 +8,19 @@ namespace SwcsAPI.Middlewares
     {
         private readonly RequestDelegate next;
 
-        public GetVehicleByIdBlockerMiddleware(RequestDelegate next)
+        public GetVehicleByIdBlockerMiddleware(RequestDelegate next) // Bir sonra gelecek olan middlware'i uyandırmak için burda parametre
+                                                                     // olarak RequestDelegate alıyoruz.
         {
             this.next = next;
         }
 
         public async Task Invoke(HttpContext context)
         {
-            if (context.Request.RouteValues.Count > 0)
+            if (context.Request.RouteValues.ContainsKey("action")) // Route içerisinde bu key değerinin olup olmadığı kontrolü.
             {
-                if (context.Request.RouteValues["action"].ToString() == "GetVehicleById")
+                // Eğer o key var ise ve o key'e karşılık gelen değer, engellemek istediğim action name'i ile aynı ise kısa devre yaptırarak,
+                // forbidden response dönüyorum.
+                if (context.Request.RouteValues["action"].ToString() == "GetVehicleById") 
                 {
                     context.Response.StatusCode = (int)HttpStatusCode.Forbidden;
                     await context.Response.WriteAsync("This endpoint is not available for now.");

@@ -38,7 +38,7 @@ namespace SwcsAPI
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-            services.AddAutoMapper(typeof(MappingProfile));
+            services.AddAutoMapper(typeof(MappingProfile));// Automapper DI paketi ile direkt olarak projeye eklemiþ oldum.
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
